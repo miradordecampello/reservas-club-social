@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Club Social Mirador de Campello</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google API client library -->
+  <script async defer src="https://apis.google.com/js/api.js"></script>
+  <!-- Import map for EmailJS -->
+  <script type="importmap">
+  {
+    "imports": {
+      "emailjs": "https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.es.min.js"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Club Social Mirador de Campello</h1>
+    <div>
+      <button id="sign-in-button">Iniciar sesión con Google</button>
+      <button id="sign-out-button" class="hidden">Cerrar sesión</button>
+    </div>
+  </header>
+  <main>
+    <div id="calendar-container">
+      <!-- Aquí se renderiza el calendario -->
+    </div>
+  </main>
+
+  <!-- Modal de reserva -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title">Crear reserva</h2>
+      <form id="reservation-form">
+        <input type="hidden" id="event-id" value="">
+        <label>Nombre completo:
+          <input type="text" id="name" required>
+        </label>
+        <label>Piso y puerta:
+          <input type="text" id="floor-door" required>
+        </label>
+        <label>Teléfono:
+          <input type="tel" id="phone" required>
+        </label>
+        <label>Email:
+          <input type="email" id="email" required>
+        </label>
+        <label>Fecha:
+          <input type="date" id="date" required>
+        </label>
+        <div class="buttons">
+          <button type="submit" id="save-button">Guardar</button>
+          <button type="button" id="delete-button" class="hidden">Eliminar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div id="loader" class="loader hidden">Cargando...</div>
+</body>
+</html>
