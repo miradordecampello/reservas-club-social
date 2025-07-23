@@ -209,5 +209,30 @@ function sendEmails(userTo, nombre, piso, fecha) {
     gapi.load('client:auth2', initClient);
   } else {
     setTimeout(waitGapi, 100);
+function handleCredentialResponse(response) {
+  const token = response.credential;
+
+  // Decodificamos el token para obtener los datos del usuario
+  const data = parseJwt(token);
+
+  console.log("Usuario autenticado:");
+  console.log("Nombre: " + data.name);
+  console.log("Correo: " + data.email);
+  console.log("Imagen: " + data.picture);
+
+  // Aquí podrías mostrar un mensaje de bienvenida, guardar datos, etc.
+}
+
+// Función para decodificar el token JWT
+function parseJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split('')
+      .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+      .join('')
+  );
+  return JSON.parse(jsonPayload);
   }
 })();
